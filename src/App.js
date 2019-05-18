@@ -1,18 +1,23 @@
 import React from 'react';
 import './App.css';
 import TableClass from './game/TableClass.js';
+import Button from '@material-ui/core/Button';
 
 function App() {
 
   return (
     <div className="App">
       <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        
-          <TableClass />
-        
+
+      <h3> Scored XXX</h3>
+        <Button variant="contained" color="primary">
+          Play
+        </Button>
+        <h3>Player 1</h3>
+        <TableClass />
+
+        <h3>Player 2</h3>
+        <TableClass />
       </header>
     </div>
   );
