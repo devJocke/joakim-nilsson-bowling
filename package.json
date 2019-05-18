@@ -1,0 +1,38 @@
+{
+    "name": "joakim-nilsson-bowling",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "core-js": "^3.0.1",
+        "eslint-plugin-react-hooks": "^1.6.0",
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6",
+        "react-hot-loader": "^4.8.4",
+        "react-scripts": "2.1.8",
+        "typescript": "^3.4.3",
+        "@material-ui/core": "^4.0.0-alpha.8",
+        "@material-ui/styles": "^4.0.0-alpha.8",
+        "@material-ui/system": "^4.0.0-alpha.8"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
+}
