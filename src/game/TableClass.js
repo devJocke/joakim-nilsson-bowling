@@ -13,7 +13,7 @@ class TableClass extends Component {
   
     for (let count = 1; count <= nrOfTurns; count++) {
       turn.push(
-        <Grid item xs={1} >
+        <Grid item xs={1} style={{ 'paddingRight': '6px' }} >
 
           <Paper square={true} style={{ 'padding': '12px' }}>{count}</Paper>
  
@@ -47,7 +47,7 @@ class TableClass extends Component {
 
     return (
       <div style={{ 'width': '100%' }}>
-        <Grid container spacing={2}>
+        <Grid container >
           <Grid item xs={1} ></Grid>
           {turn}
         </Grid>
