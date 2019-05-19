@@ -16,7 +16,7 @@ class BowlingTables extends Component {
 
           <Paper square={true} className="turn-and-total-score">{count}</Paper>
 
-          {count == 10 ?
+          {count === 10 ?
             <Grid container >
               {getGridRowWithSize(4, 3)}
             </Grid>
@@ -33,7 +33,7 @@ class BowlingTables extends Component {
 
     return (
       <div style={{ 'width': '100%' }}>
-        <Grid container style={{ 'justify-content': 'center' }}>
+        <Grid container style={{ 'justifyContent': 'center' }}>
           {gridItems}
         </Grid>
       </div>
@@ -46,6 +46,7 @@ function getGridRowWithSize(gridSize, numberOfRows) {
 
   for (let index = 0; index < numberOfRows; index++) {
     array.push(
+      //TODO:: Fix key value
       <Grid item sm={gridSize} style={{ 'width': '100%' }}  >
         <Paper square={true}> {'X'}</Paper>
       </Grid>
