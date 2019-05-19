@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import TableClass from './game/TableClass.js';
+import BowlingTables from './indexComponents/BowlingTables.js';
 import Button from '@material-ui/core/Button';
 
 function App() {
@@ -14,10 +14,10 @@ function App() {
           Play
         </Button>
         <h3>Player 1</h3>
-        <TableClass />
+        <BowlingTables />
 
         <h3>Player 2</h3>
-        <TableClass />
+        <BowlingTables />
       </header>
     </div>
   );
