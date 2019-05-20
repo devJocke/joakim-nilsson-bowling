@@ -1,34 +1,33 @@
 import React, { Component } from 'react';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import PropTypes from 'prop-types'
 
 class BowlingTables extends Component {
 
   render() {
 
-    const nrOfTurns = 10;
+    const numberOfFrames = 10;
     const gridItems = [];
 
-    for (let count = 1; count <= nrOfTurns; count++) {
-
-      let roundKey = count;
+    for (let currentFrame = 1; currentFrame <= numberOfFrames; currentFrame++) {
+ 
       gridItems.push(
-        <Grid key={roundKey} item xs={1} style={{ 'paddingRight': '6px' }} >
+        <Grid key={currentFrame} item xs={1} style={{ 'paddingRight': '6px' }} >
 
-          <Paper square={true} className="turn-and-total-score">{count}</Paper>
+          <Paper square={true} className="turn-and-total-score">{currentFrame}</Paper>
 
-          {count === 10 ?
+          {currentFrame === 10 ?
             <Grid container >
-              {getGridRowWithSize(4, 3, roundKey)}
+              {getGridRowWithSize(4, 3, currentFrame, this.props.player)}
             </Grid>
             :
-            <Grid container>
-              {getGridRowWithSize(6, 2, roundKey)}
+            <Grid container> 
+              {getGridRowWithSize(6, 2, currentFrame, this.props.player)}
             </Grid>}
 
-          <Paper id="total" square={true} className="turn-and-total-score" >{count}</Paper>
-
-        </Grid >
+          <Paper id={(this.props.player + "score" + currentFrame).toString()} square={true} className="turn-and-total-score" >{currentFrame}</Paper>
+        </Grid>
       );
       arrayWithScore = [];
     }
@@ -43,19 +42,23 @@ class BowlingTables extends Component {
 }
 
 let arrayWithScore = [];
-function getGridRowWithSize(gridSize, numberOfRows, roundKey) {
+function getGridRowWithSize(gridSize, numberOfRows, currentFrame, player) {
 
   for (let index = 1; index <= numberOfRows; index++) {
     arrayWithScore.push(
       //TODO:: FIXA TESTER
-      <Grid id={roundKey + index} key={index} item sm={gridSize} style={{ 'width': '100%' }}  >
+      <Grid id={(player + currentFrame + index).toString()} key={index} item sm={gridSize} style={{ 'width': '100%' }}  >
         <Paper square={true}> {"x"}</Paper>
       </Grid>
     );
-    {/* console.log(roundKey);
-    console.log(index); */}
-
   }
   return arrayWithScore;
 }
+
+BowlingTables.propTypes = {
+  player: PropTypes.string,
+};
+BowlingTables.defaultProps = {
+  player: "",
+};
 export default BowlingTables;

@@ -1,7 +1,7 @@
 let currentPlayer = "player1";
 let pinsLeft = 10;
 let throwCounter = 1;
-let roundCounter = 1;
+let frame = 1;
 
 
 export function randomizeNumber() {
@@ -12,7 +12,7 @@ export function randomizeNumber() {
         //If its the first then a strike has been made
         checkAndAssignScoreIfSpareOrStrike();
         //Proceed by resetting the pins and change to the next player 
-        if (roundCounter !== 10) {
+        if (frame !== 10) {
             changePlayerTurn();
         }
 
@@ -41,10 +41,10 @@ function checkAndAssignScoreIfSpareOrStrike() {
         assignScore("X");
     }
     //If its the first then a spare-strike has been made 
-    else if (throwCounter === 2 && roundCounter !== 10) {
+    else if (throwCounter === 2 && frame !== 10) {
         assignScore("/");
     }
-    if (roundCounter === 10) {
+    if (frame === 10) {
         switch (throwCounter) {
             case 1:
                 throwCounter = 2;
@@ -68,10 +68,10 @@ function assignScore(value) {
     if (lastVal === 0) {
         lastVal = value;
     } else {
-        document.getElementById(currentPlayer + "score" + roundCounter).innerHTML = lastVal + value;
+        document.getElementById(currentPlayer + "score" + frame).innerHTML = lastVal + value;
         lastVal = 0;
     }
-    document.getElementById(currentPlayer + roundCounter + throwCounter).innerHTML = value == null ? pinsLeft : value;
+    document.getElementById(currentPlayer + frame + throwCounter).innerHTML = value == null ? pinsLeft : value;
 }
 
 function changePlayerTurn() {
@@ -82,8 +82,8 @@ function changePlayerTurn() {
     } else {
         currentPlayer = "player1";
         document.getElementById("playButton").innerText = "player1";
-        if (roundCounter !== 10) {
-            roundCounter++;
+        if (frame !== 10) {
+            frame++;
         }
     }
     throwCounter = 1;
