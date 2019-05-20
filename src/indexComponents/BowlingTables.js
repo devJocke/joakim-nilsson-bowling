@@ -11,26 +11,27 @@ class BowlingTables extends Component {
 
     for (let count = 1; count <= nrOfTurns; count++) {
 
+      let roundKey = count;
       gridItems.push(
-        <Grid item xs={1} style={{ 'paddingRight': '6px' }} >
+        <Grid key={roundKey} item xs={1} style={{ 'paddingRight': '6px' }} >
 
           <Paper square={true} className="turn-and-total-score">{count}</Paper>
 
           {count === 10 ?
             <Grid container >
-              {getGridRowWithSize(4, 3)}
+              {getGridRowWithSize(4, 3, roundKey)}
             </Grid>
             :
             <Grid container>
-              {getGridRowWithSize(6, 2)}
+              {getGridRowWithSize(6, 2, roundKey)}
             </Grid>}
 
           <Paper id="total" square={true} className="turn-and-total-score" >{count}</Paper>
 
         </Grid >
       );
+      arrayWithScore = [];
     }
-
     return (
       <div style={{ 'width': '100%' }}>
         <Grid container style={{ 'justifyContent': 'center' }}>
@@ -41,17 +42,20 @@ class BowlingTables extends Component {
   }
 }
 
-function getGridRowWithSize(gridSize, numberOfRows) {
-  const array = [];
+let arrayWithScore = [];
+function getGridRowWithSize(gridSize, numberOfRows, roundKey) {
 
-  for (let index = 0; index < numberOfRows; index++) {
-    array.push(
-      //TODO:: Fix key value
-      <Grid item sm={gridSize} style={{ 'width': '100%' }}  >
-        <Paper square={true}> {'X'}</Paper>
+  for (let index = 1; index <= numberOfRows; index++) {
+    arrayWithScore.push(
+      //TODO:: FIXA TESTER
+      <Grid id={roundKey + index} key={index} item sm={gridSize} style={{ 'width': '100%' }}  >
+        <Paper square={true}> {"x"}</Paper>
       </Grid>
     );
+    {/* console.log(roundKey);
+    console.log(index); */}
+
   }
-  return array;
+  return arrayWithScore;
 }
 export default BowlingTables;
