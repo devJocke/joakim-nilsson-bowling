@@ -1,6 +1,6 @@
 
 ## Bowling game
-Created for [https://standout.se/]
+Created for [Standout](https://standout.se/)
  
 ## Available Scripts
 
