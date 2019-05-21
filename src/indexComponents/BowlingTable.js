@@ -26,7 +26,7 @@ class BowlingTables extends Component {
               {getGridRowWithSize(6, 2, currentFrame, this.props.player)}
             </Grid>}
 
-          <Paper id={(this.props.player + "score" + currentFrame).toString()} square={true} className="turn-and-total-score" >{currentFrame}</Paper>
+          <Paper id={(this.props.player + "score" + currentFrame).toString()} square={true} className="turn-and-total-score" >&#8205;</Paper>
         </Grid>
       );
       arrayWithScore = [];
