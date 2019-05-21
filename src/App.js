@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import BowlingTable from './indexComponents/BowlingTable.js';
 import Button from '@material-ui/core/Button';
-import { randomizeNumber } from './HandlePlayer';
+import { randomizeNumber } from './HandlePlayers';
 
 function App() {
 
