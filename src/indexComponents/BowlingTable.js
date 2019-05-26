@@ -45,12 +45,22 @@ let arrayWithScore = [];
 function getGridRowWithSize(gridSize, numberOfRows, currentFrame, player) {
 
   for (let index = 1; index <= numberOfRows; index++) {
-    arrayWithScore.push(
-      //TODO:: FIXA TESTER
-      <Grid id={(player + currentFrame + index).toString()} key={index} item sm={gridSize} style={{ 'width': '100%' }}  >
-        <Paper square={true}> {"x"}</Paper>
-      </Grid>
-    );
+
+    if (numberOfRows === 3) {
+      let newIndex = index - 1; 
+      arrayWithScore.push(
+        <Grid id={(player + currentFrame + newIndex).toString()} key={newIndex} item sm={gridSize} style={{ 'width': '100%' }}  >
+          <Paper square={true}> {"x"}</Paper>
+        </Grid>
+      );
+    }
+    else {
+      arrayWithScore.push( 
+        <Grid id={(player + currentFrame + index).toString()} key={index} item sm={gridSize} style={{ 'width': '100%' }}  >
+          <Paper square={true}> {"x"}</Paper>
+        </Grid>
+      );
+    }
   }
   return arrayWithScore;
 }
