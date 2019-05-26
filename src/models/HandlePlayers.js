@@ -30,9 +30,12 @@ export function randomizeNumber() {
     // if (frame === 1 && firstTest === 2) {
     //     pinsKnockedDown = 10;
     // }
-    // if (frame === 10) {
+    // if (frame === 10 && throwCounter == 1) {
+    //     pinsKnockedDown = 3;
+    // }
+    // if (frame === 10 && throwCounter == 2) {
     //     pinsKnockedDown = 5;
-    // } 
+    // }
 
 
     //If all pins are down check if its the first or second throw
@@ -75,15 +78,20 @@ var strikes = [];
 function assignScore(value) {
 
     if (value === strikeValue) {
-        strikes.push({ frame: frame, value: 0, throwsLeft: 2 });
-        bonusHitHasBeenMade("X");
+        if (frame >= 10 && throwCounter > 1) {
+            strikes.push({ frame: frame, value: 0, throwsLeft: 1 });
+            bonusHitHasBeenMade("/");
+        } else {
+            strikes.push({ frame: frame, value: 0, throwsLeft: 2 });
+            bonusHitHasBeenMade("X");
+        }
     }
 
     if (strikes !== undefined && strikes.length !== 0) {
         loopThroughBonushits(value);
     }
 
-//If a strike has been made theres no reason to move beyond this point
+    //If a strike has been made theres no reason to move beyond this 
     if (value === strikeValue) {
         return
     }
@@ -119,7 +127,7 @@ function assignScore(value) {
     lastValue = value;
 }
 
-function bonusHitHasBeenMade(symbol) { 
+function bonusHitHasBeenMade(symbol) {
     if (frame >= 10) {
         //Set the counter back one to fit the id element order 8,9,10 otherwise it would skip 10 and go straight to
         let throwIndex = throwCounter - 1;
@@ -135,6 +143,7 @@ function loopThroughBonushits(value) {
     for (let index = 0; index < strikes.length; index++) {
         let element = strikes[index];
         element["value"] += value;
+
 
         if (element["throwsLeft"] === 0) {
             totalScore += element["value"];
