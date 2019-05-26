@@ -9,6 +9,26 @@ export function randomizeNumber() {
 
     //TODO FIX STRIKE AND MISS
     pinsLeft = Math.floor(Math.random() * (pinsLeft + 1));
+    //Smalltests
+    // pinsKnockedDown =  5;
+    // if (firstTest === 2 && yes === false) {
+    //     pinsKnockedDown = 10;
+    //     firstTest = 3;
+    //     yes = true;
+    // }
+    // if (frame === 2 && yes === true) {
+    //     pinsKnockedDown = 6;
+    // }
+    // if (frame === 2 && yes === false) {
+    //     pinsKnockedDown = 1;
+    //     yes = true;
+    // }  
+    // if (frame === 1 && firstTest === 2) {
+    //     pinsKnockedDown = 10;
+    // }
+    // if (frame === 10) {
+    //     pinsKnockedDown = 5;
+    // } 
     //If all pins are down check if its the first or second throw
     if (pinsLeft === 0) {
         //If its the first then a strike has been made
