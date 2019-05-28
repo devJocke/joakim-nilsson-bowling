@@ -56,8 +56,8 @@ function getGridRowWithSize(gridSize, numberOfRows, currentFrame, player) {
     }
     else {
       arrayWithScore.push( 
-        <Grid id={(player + currentFrame + index).toString()} key={index} item sm={gridSize} style={{ 'width': '100%' }}  >
-          <Paper square={true}> &#8205;</Paper>
+        <Grid  key={index} item sm={gridSize} style={{ 'width': '100%' }}  >
+          <Paper  id={(player + currentFrame + index).toString()} square={true}>&#8205;</Paper>
         </Grid>
       );
     }
