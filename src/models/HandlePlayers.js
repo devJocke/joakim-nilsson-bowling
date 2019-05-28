@@ -17,7 +17,7 @@ export default class HandlePlayers {
     randomizeNumber(playerName) {
         //Math.random begins at 0 so we need to increase number +1 to be able to miss the shots entirely 
         this.currentPlayer = playerName;
-        this.pinsKnockedDown = Math.floor(Math.random() * (this.pinsKnockedDown + 1))
+        this.pinsKnockedDown = Math.floor(Math.random() * (this.pinsKnockedDown + 1));
 
         //Smalltests
         // this.pinsKnockedDown = 5;
@@ -36,13 +36,19 @@ export default class HandlePlayers {
         // if (this.frame === 1 && firstTest === 2) {
         //     this.pinsKnockedDown = 10;
         // }
+        // if (this.frame === 1 && this.throwCounter == 1) {
+        //     this.pinsKnockedDown = 0;
+        // }
+        // if (this.frame === 1 && this.throwCounter == 2) {
+        //     this.pinsKnockedDown = 10;
+        // }
         // if (this.frame === 10 && this.throwCounter == 1) {
-        //     this.pinsKnockedDown = 5;
+        //     this.pinsKnockedDown = 0;
         // }
+        
         // if (this.frame === 10 && this.throwCounter == 2) {
-        //     this.pinsKnockedDown = 5;
+        //     this.pinsKnockedDown = 10;
         // }
-
 
         //If all pins are down check if its the first or second throw
         if (this.pinsKnockedDown === 10) {
@@ -57,6 +63,8 @@ export default class HandlePlayers {
             if (this.throwCounter === 1) {
                 this.assignScore(this.strikeValue);
                 this.throwCounter = 2;
+            } else if(this.throwCounter === 2){
+                this.assignScore(this.strikeValue);
             }
             this.changeFrame();
 
@@ -77,10 +85,10 @@ export default class HandlePlayers {
         //TODO END GAME
     }
 
-    assignScore(value) {
+    assignScore(value) { 
 
         if (value === this.strikeValue) {
-            if (this.frame >= 10 && this.throwCounter > 1) {
+            if (this.throwCounter > 1) {
                 this.strikes.push({ frame: this.frame, value: 0, throwsLeft: 1 });
                 this.bonusHitHasBeenMade("/");
             } else {
@@ -166,8 +174,7 @@ export default class HandlePlayers {
         }
     }
 
-    changeFrame() {
-        console.log(this.throwCounter);
+    changeFrame() { 
         
         let prevcount = this.throwCounter - 1; 
         if(document.getElementById(this.currentPlayer + this.frame + prevcount).innerText === "/"){
