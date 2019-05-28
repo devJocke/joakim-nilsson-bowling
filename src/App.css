@@ -24,3 +24,21 @@
     padding-top: 12px;
     padding-bottom: 12px;
 }
+
+.Mui-disabled {
+    background-color: rgba(175, 175, 175, 0.356) !important;
+}
+
+.foreground {
+    width: 100%;
+    opacity: 1;
+    -webkit-transition: opacity 0.1s ease-in;
+    -moz-transition: opacity 0.1s ease-in;
+    -o-transition: opacity 0.1s ease-in;
+    -ms-transition: opacity 0.1s ease-in;
+    transition: opacity 0.1s ease-in;
+}
+
+#player2Foreground {
+    opacity: 0.5;
+}
