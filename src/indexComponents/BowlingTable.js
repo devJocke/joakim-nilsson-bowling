@@ -32,8 +32,8 @@ class BowlingTables extends Component {
       arrayWithScore = [];
     }
     return (
-      <div style={{ 'width': '100%' }}>
-        <Grid container style={{ 'justifyContent': 'center' }}>
+      <div style={{ 'width': '100%'}}>
+        <Grid container style={{ 'justifyContent': 'center'}}>
           {gridItems}
         </Grid>
       </div>
@@ -50,14 +50,14 @@ function getGridRowWithSize(gridSize, numberOfRows, currentFrame, player) {
       let newIndex = index - 1; 
       arrayWithScore.push(
         <Grid id={(player + currentFrame + newIndex).toString()} key={newIndex} item sm={gridSize} style={{ 'width': '100%' }}  >
-          <Paper square={true}> {"x"}</Paper>
+          <Paper square={true}> &#8205;</Paper>
         </Grid>
       );
     }
     else {
       arrayWithScore.push( 
         <Grid id={(player + currentFrame + index).toString()} key={index} item sm={gridSize} style={{ 'width': '100%' }}  >
-          <Paper square={true}> {"x"}</Paper>
+          <Paper square={true}> &#8205;</Paper>
         </Grid>
       );
     }
