@@ -1,5 +1,8 @@
 
 
+import bowlingPinStrike from '../images/bowling-pin-strike.png';
+import bowlingPin from '../images/bowling-pin.png'; 
+
 export default class HandlePlayers {
     pinsKnockedDown = 10;
     currentPlayer = "player1";
@@ -36,13 +39,13 @@ export default class HandlePlayers {
         // if (this.frame === 1 && firstTest === 2) {
         //     this.pinsKnockedDown = 10;
         // }
-        // if (this.frame === 1 && this.throwCounter == 1) {
-        //     this.pinsKnockedDown = 0;
-        // }
-        // if (this.frame === 1 && this.throwCounter == 2) {
+        // if (this.frame === 2 && this.throwCounter == 1) {
         //     this.pinsKnockedDown = 10;
         // }
-        // if (this.frame === 10 && this.throwCounter == 1) {
+        // if (this.frame === 1 && this.throwCounter === 1) {
+        //     this.pinsKnockedDown = 10;
+        // }
+        // if (this.frame === 10 && this.throwCounter === 1) {
         //     this.pinsKnockedDown = 0;
         // }
 
@@ -96,6 +99,8 @@ export default class HandlePlayers {
                 this.strikes.push({ frame: this.frame, value: 0, throwsLeft: 2 });
                 this.bonusHitHasBeenMade("X");
             }
+              
+            document.getElementById("imgSource"+ this.currentPlayer).src = bowlingPinStrike;
         }
 
         if (this.strikes !== undefined && this.strikes.length !== 0) {
@@ -167,6 +172,7 @@ export default class HandlePlayers {
                 this.strikes.shift();
                 //And remove one from loop index to match the new length of the array
                 index = index - 1;
+                document.getElementById("imgSource"+ this.currentPlayer).src = bowlingPin;
             }
 
             if (element["throwsLeft"] !== 0) {
@@ -182,12 +188,12 @@ export default class HandlePlayers {
 
         }
         else if (this.currentPlayer === "player1") {
-            document.getElementById("playButton1").innerText = "Player 1 Throw"
+            document.getElementById("playButton1").innerText = "Throw"
             enableDisablePlayerThrowButtons(true, false);
             fadePlayerBoard(0.5, 1.0);
         } else {
             this.currentPlayer = "player1";
-            document.getElementById("playButton2").innerText = "Player 2 Throw"
+            document.getElementById("playButton2").innerText = "Throw"
             enableDisablePlayerThrowButtons(false, true);
             fadePlayerBoard(1.0, 0.5);
         }
@@ -212,7 +218,7 @@ function endGameIfMaxFrameValueIsSet() {
             document.getElementById("gameInfoDisplay").innerText = "TIE " + player1Score;
         } else if (player1Score < player2Score) {
             document.getElementById("gameInfoDisplay").innerText = "Player 2 wins with the score " + player2Score;
-        }
+        } 
     }
 }
 
