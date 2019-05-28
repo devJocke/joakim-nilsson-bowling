@@ -45,7 +45,7 @@ export default class HandlePlayers {
         // if (this.frame === 10 && this.throwCounter == 1) {
         //     this.pinsKnockedDown = 0;
         // }
-        
+
         // if (this.frame === 10 && this.throwCounter == 2) {
         //     this.pinsKnockedDown = 10;
         // }
@@ -56,14 +56,15 @@ export default class HandlePlayers {
             //If we are at the end of the series and still getting strike / spares 
             if (this.frame >= 10) {
                 this.assignScore(this.strikeValue);
-                this.changeFrame();
+                this.changeFrame(); 
+                endGameIfMaxFrameValueIsSet();
                 return;
             }
 
             if (this.throwCounter === 1) {
                 this.assignScore(this.strikeValue);
                 this.throwCounter = 2;
-            } else if(this.throwCounter === 2){
+            } else if (this.throwCounter === 2) {
                 this.assignScore(this.strikeValue);
             }
             this.changeFrame();
@@ -82,10 +83,10 @@ export default class HandlePlayers {
         }
         //Set the remaning pins for new randomization
         this.pinsKnockedDown = 10 - this.pinsKnockedDown;
-        //TODO END GAME
+        endGameIfMaxFrameValueIsSet();
     }
 
-    assignScore(value) { 
+    assignScore(value) {
 
         if (value === this.strikeValue) {
             if (this.throwCounter > 1) {
@@ -174,22 +175,21 @@ export default class HandlePlayers {
         }
     }
 
-    changeFrame() { 
-        
-        let prevcount = this.throwCounter - 1; 
-        if(document.getElementById(this.currentPlayer + this.frame + prevcount).innerText === "/"){
-            
+    changeFrame() {
+
+        let prevcount = this.throwCounter - 1;
+        if (document.getElementById(this.currentPlayer + this.frame + prevcount).innerText === "/") {
+
         }
         else if (this.currentPlayer === "player1") {
-            document.getElementById("playButton1").innerText = "Roll"
-            document.getElementById("playButton1").disabled = true;
-            document.getElementById("playButton2").disabled = false;
-
+            document.getElementById("playButton1").innerText = "Player 1 Throw"
+            enableDisablePlayerThrowButtons(true, false);
+            fadePlayerBoard(0.5, 1.0);
         } else {
             this.currentPlayer = "player1";
-            document.getElementById("playButton2").innerText = "Roll"
-            document.getElementById("playButton2").disabled = true;
-            document.getElementById("playButton1").disabled = false;
+            document.getElementById("playButton2").innerText = "Player 2 Throw"
+            enableDisablePlayerThrowButtons(false, true);
+            fadePlayerBoard(1.0, 0.5);
         }
         if (this.frame >= 10 && this.throwCounter < 3) {
             this.throwCounter++;
@@ -198,4 +198,31 @@ export default class HandlePlayers {
             this.frame++;
         }
     }
-} 
+}
+
+function endGameIfMaxFrameValueIsSet() {
+    if (document.getElementById("player2score10").innerText > 0) {
+        fadePlayerBoard(1.0, 1.0);
+        enableDisablePlayerThrowButtons(true, true);
+        let player1Score = document.getElementById("player1score10").innerText
+        let player2Score = document.getElementById("player2score10").innerText
+        if (player1Score > player2Score) {
+            document.getElementById("gameInfoDisplay").innerText = "Player 1 wins with the score " + player1Score;
+        } else if (player1Score === player2Score) {
+            document.getElementById("gameInfoDisplay").innerText = "TIE " + player1Score;
+        } else if (player1Score < player2Score) {
+            document.getElementById("gameInfoDisplay").innerText = "Player 2 wins with the score " + player2Score;
+        }
+    }
+}
+
+function enableDisablePlayerThrowButtons(disableValuep1, disableValuep2) {
+    document.getElementById("playButton1").disabled = disableValuep1;
+    document.getElementById("playButton2").disabled = disableValuep2;
+}
+
+function fadePlayerBoard(opacityValuep1, opacityValuep2) {
+    document.getElementById("player1Foreground").style.opacity = opacityValuep1;
+    document.getElementById("player2Foreground").style.opacity = opacityValuep2;
+}
+
